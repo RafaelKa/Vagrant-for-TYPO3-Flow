@@ -1,0 +1,4 @@
+.idea
+.vagrant
+puppet/modules/stdlib
+puppet/modules/apt
