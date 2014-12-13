@@ -4,8 +4,9 @@ class dbms {
     always_apt_update => true,
   }
 
-#  include dbms::couchdb
-#  include dbms::mysql
+  include dbms::mysql
+  include dbms::postgresql
+  include dbms::couchdb
   include dbms::mongodb
 
 }

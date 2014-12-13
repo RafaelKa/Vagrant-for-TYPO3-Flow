@@ -1,3 +1,3 @@
-class couchBase {
+class dbms::couchBase {
 
 }
