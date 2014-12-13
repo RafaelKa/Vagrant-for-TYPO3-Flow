@@ -1,9 +1,9 @@
-Vagrant Box for multiple DBMS's
-===============================
+Vagrant Box for TYPO3-Flow
+==========================
 
 Installation
 ------------
 
-puppet module install puppetlabs-apt
+clone this repository and run vagrant up
 
 
