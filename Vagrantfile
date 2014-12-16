@@ -34,11 +34,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Example for VirtualBox:
   #
   config.vm.provider "virtualbox" do |vm|
-  ## Don't boot with headless mode
-    vm.gui = true
+  ## Boot with console window from VirtualBox
+  #  vm.gui = true
   #
-  ## Use VBoxManage to customize the VM. For example to change memory:
-    vm.customize ["modifyvm", :id, "--memory", "2048"]
+  ## Use VBoxManage to customize the VM. For example to change memory, uncomment next line.
+  #  vm.customize ["modifyvm", :id, "--memory", "2048"]
+  #
   ## todo : save VM in VM_Directory
   end
   ####
@@ -49,10 +50,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # You will need to create the manifests directory and a manifest in
   # the file default.pp in the manifests_path directory.
   #
-#  config.vm.provision :shell do |shell|
-#    shell.inline = "puppet module install --force 'puppetlabs/stdlib' --modulepath '/vagrant/puppet/modules'; " +
-#                   "puppet module install --force 'puppetlabs/apt' --modulepath '/vagrant/puppet/modules'; "
-#  end
+  config.vm.provision :shell do |shell|
+    shell.inline = "puppet module install --force 'puppetlabs/stdlib' --modulepath '/vagrant/puppet/modules'; " +
+                   "puppet module install --force 'puppetlabs/apt' --modulepath '/vagrant/puppet/modules'; "
+  end
 
   config.vm.provision "puppet" do |puppet|
   ## configuration.yaml does not work currently
