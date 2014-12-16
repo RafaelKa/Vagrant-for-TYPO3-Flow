@@ -1,7 +1,7 @@
 class dbms::postgresql {
 
   apt::source { 'postgresql':
-    comment           => 'This is the official repository for MySQL',
+    comment           => 'This is the official repository for PostgreSQL',
     location          => 'http://apt.postgresql.org/pub/repos/apt ',
     release           => 'trusty-pgdg',
     repos             => 'main',
