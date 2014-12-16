@@ -21,8 +21,6 @@ user { "vagrant":
   shell => "/bin/bash"
 }
 
-#package{"apt":
-#  ensure => "latest"
-#}
-
 include dbms
+
+include webserver
