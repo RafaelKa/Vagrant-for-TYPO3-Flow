@@ -21,6 +21,10 @@ user { "vagrant":
   shell => "/bin/bash"
 }
 
+class { 'apt':
+  always_apt_update => true
+}
+
 include dbms
 
 include webserver
