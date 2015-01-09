@@ -1,0 +1,32 @@
+# By default all services will be installed but only default services will be started on system start.
+# Exeption is MariaDB and MySQL, they can not be installed at same time by this way.
+
+---
+dbms:
+  MySQL:
+    prefer_maria_db: false
+    autostart: true
+    root_password: ''
+
+  PostgreSQL:
+    autostart: false
+    password: ''
+
+  CouchDB:
+    autostart: false
+    password: ''
+
+  Couchbase:
+    autostart: false
+    password: ''
+
+  MongoDB:
+    autostart: false
+    password: ''
+
+webserver:
+  ApacheHTTPd:
+    autostart: true
+
+  NginX:
+    autostart: false

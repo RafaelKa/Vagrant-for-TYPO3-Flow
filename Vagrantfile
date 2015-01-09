@@ -35,10 +35,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #
   config.vm.provider "virtualbox" do |vm|
   ## Boot with console window from VirtualBox
-  #  vm.gui = true
+    vm.gui = true
   #
   ## Use VBoxManage to customize the VM. For example to change memory, uncomment next line.
-  #  vm.customize ["modifyvm", :id, "--memory", "2048"]
+    vm.customize ["modifyvm", :id, "--memory", "2048"]
   #
   ## todo : save VM in VM_Directory
   end
@@ -50,14 +50,13 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # You will need to create the manifests directory and a manifest in
   # the file default.pp in the manifests_path directory.
   #
-  config.vm.provision :shell do |shell|
-    shell.inline = "puppet module install --force 'puppetlabs/stdlib' --modulepath '/vagrant/puppet/modules'; " +
-                   "puppet module install --force 'puppetlabs/apt' --modulepath '/vagrant/puppet/modules'; "
-  end
+#  config.vm.provision :shell do |shell|
+#    shell.inline = "puppet module install --force 'puppetlabs/stdlib' --modulepath '/vagrant/puppet/modules'; " +
+#                   "puppet module install --force 'puppetlabs/apt' --modulepath '/vagrant/puppet/modules'; "
+#  end
 
   config.vm.provision "puppet" do |puppet|
-  ## configuration.yaml does not work currently
-#    puppet.hiera_config_path = "configuration.yaml"
+    puppet.hiera_config_path = "puppet/hiera.yaml"
     puppet.manifests_path = "puppet/manifests"
     puppet.manifest_file  = "trusty.pp"
     puppet.module_path="puppet/modules"
