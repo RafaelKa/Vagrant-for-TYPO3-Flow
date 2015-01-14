@@ -26,5 +26,6 @@ class { 'apt':
 }
 
 include dbms
+include serversidescripting
 
 #include webserver
