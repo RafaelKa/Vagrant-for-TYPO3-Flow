@@ -35,7 +35,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #
   config.vm.provider "virtualbox" do |vm|
   ## Boot with console window from VirtualBox
-    vm.gui = true
+  #  vm.gui = true
   #
   ## Use VBoxManage to customize the VM. For example to change memory, uncomment next line.
     vm.customize ["modifyvm", :id, "--memory", "2048"]
