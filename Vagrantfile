@@ -50,10 +50,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # You will need to create the manifests directory and a manifest in
   # the file default.pp in the manifests_path directory.
   #
-#  config.vm.provision :shell do |shell|
-#    shell.inline = "puppet module install --force 'puppetlabs/stdlib' --modulepath '/vagrant/puppet/modules'; " +
-#                   "puppet module install --force 'puppetlabs/apt' --modulepath '/vagrant/puppet/modules'; "
-#  end
+  config.vm.provision :shell do |shell|
+    shell.inline = "puppet module install --force 'puppetlabs/stdlib' --modulepath '/vagrant/puppet/modules'; " +
+                   "puppet module install --force 'puppetlabs/apt' --modulepath '/vagrant/puppet/modules'; "
+  end
 
   config.vm.provision "puppet" do |puppet|
     puppet.hiera_config_path = "puppet/hiera.yaml"
