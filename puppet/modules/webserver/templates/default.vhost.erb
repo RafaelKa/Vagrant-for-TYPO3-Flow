@@ -1,0 +1,17 @@
+<VirtualHost *:80>
+	ServerName 	@projects_hostname
+
+	DocumentRoot /var/www/@projects_hostname
+
+	<Directory /var/www/@projects_hostname >
+    	Order Allow,Deny
+    	Allow from All
+    	AllowOverride All
+    	Require all granted
+
+    	<FilesMatch "\.php$" >
+    		SetHandler "proxy:unix:/run/train2web.sock|fcgi://."
+    	</FilesMatch>
+    </Directory>
+
+</VirtualHost>
