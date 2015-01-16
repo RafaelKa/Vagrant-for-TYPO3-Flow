@@ -33,7 +33,7 @@ class dbms::postgresql {
   } else {
     exec { 'disable-autostart-for-postgresql':
       command => 'update-rc.d -f postgresql remove',
-      require => Package['postgresql-server']
+      require => Package['postgresql-9.4']
     }
     ->
     exec { 'stop-postgresql-server':
