@@ -7,7 +7,7 @@ class dbms::mongodb {
     repos             => '10gen',
     key               => '7F0CEB10',
     key_server        => 'keyserver.ubuntu.com',
-    ## sources don't exist currently
+    ## sources does not exist currently
     include_src       => false,
     include_deb       => true
   }
@@ -21,7 +21,7 @@ class dbms::mongodb {
   $settings = hiera('dbms')
   if $settings['MongoDB']['autostart'] == true {
     exec { 'enable-autostart-for-mongodb':
-      command => 'update-rc.d mongodb defaults',
+      command => 'update-rc.d mongod defaults',
       require => Package['mongodb-org']
     }
     ->
@@ -34,7 +34,7 @@ class dbms::mongodb {
     }
   } else {
     exec { 'disable-autostart-for-mongodb':
-      command => 'update-rc.d -f mongodb remove',
+      command => 'update-rc.d -f mongod remove',
       require => Package['mongodb-org']
     }
     ->
