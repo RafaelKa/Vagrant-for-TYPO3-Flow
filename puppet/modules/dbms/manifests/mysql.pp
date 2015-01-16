@@ -29,7 +29,6 @@ class dbms::mysql {
     notify { 'MariaDB-instead-of-MySQL-will-be-installed':
       message => 'MariaDB installed instead of MySQL.'
     }
-    include dbms::mariadb
   } else {
     $mysql_or_mariadb = 'mysql-server'
 
