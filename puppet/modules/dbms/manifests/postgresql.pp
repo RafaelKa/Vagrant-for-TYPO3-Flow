@@ -11,9 +11,37 @@ class dbms::postgresql {
     include_deb       => true
   }
 
-  package { 'postgresql-9.3':
+  package { 'postgresql-9.4':
     ensure  => 'installed',
     require => Apt::Source['postgresql']
+  }
+
+  if $settings['PostgreSQL']['autostart'] == true {
+    exec { 'enable-autostart-for-postgresql':
+      command => 'update-rc.d postgresql defaults',
+      require => Package['postgresql-9.4']
+    }
+    ->
+    exec { 'start-postgresql-server':
+      command => 'service postgresql start'
+    }
+    ->
+    notify { 'PostgreSQL-enable-autostart':
+      message => 'autostart for PostgreSQL enabled and PostgreSQL server started'
+    }
+  } else {
+    exec { 'disable-autostart-for-postgresql':
+      command => 'update-rc.d -f postgresql remove',
+      require => Package['postgresql-server']
+    }
+    ->
+    exec { 'stop-postgresql-server':
+      command => 'service postgresql stop'
+    }
+    ->
+    notify { 'PostgreSQL-disable-autostart':
+      message => 'autostart for PostgreSQL disabled and PostgreSQL server stopped'
+    }
   }
 
 }
