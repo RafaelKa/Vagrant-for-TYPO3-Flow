@@ -21,7 +21,7 @@ class dbms::mysql {
     exec { 'enable-starting-mysql-server-on-start':
       command => 'update-rc.d mysql defaults && service mysql start',
 #      refreshonly => true,
-      subscribe => Package['mysql-server'],
+      require => Package['mysql-server'],
     }
     ->
     notify { 'enable autostart for MySQL':
@@ -30,7 +30,7 @@ class dbms::mysql {
   } else {
     exec { 'disable-starting-mysql-server-on-start':
       command => 'update-rc.d -f mysql remove && service mysql stop',
-      subscribe => Package['mysql-server']
+      require => Package['mysql-server']
     }
     ->
     notify { 'disable autostart for MySQL':
