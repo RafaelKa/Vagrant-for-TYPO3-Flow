@@ -6,12 +6,12 @@ dbms:
   MySQL:
   ## MySQL and MariaDB can not be installed at same time, therefore one of them must be choosed.
   ## Set to true if you want MariaDB
-    prefer_maria_db: true
+    prefer_maria_db: false
     autostart: false
     root_password: ''
 
   PostgreSQL:
-    autostart: true
+    autostart: false
     password: ''
 
   CouchDB:
@@ -23,7 +23,7 @@ dbms:
     password: ''
 
   MongoDB:
-    autostart: false
+    autostart: true
     password: ''
 
 webserver:

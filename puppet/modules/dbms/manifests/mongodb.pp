@@ -18,6 +18,35 @@ class dbms::mongodb {
     require => Apt::Source['mongodb']
   }
 
+  $settings = hiera('dbms')
+  if $settings['MongoDB']['autostart'] == true {
+    exec { 'enable-autostart-for-mongodb':
+      command => 'update-rc.d mongodb defaults',
+      require => Package['mongodb-org']
+    }
+    ->
+    exec { 'start-mongodb-server':
+      command => 'service mongod start'
+    }
+    ->
+    notify { 'MongoDB-enable-autostart':
+      message => 'autostart for MongoDB enabled and MongoDB server started'
+    }
+  } else {
+    exec { 'disable-autostart-for-mongodb':
+      command => 'update-rc.d -f mongodb remove',
+      require => Package['mongodb-org']
+    }
+    ->
+    exec { 'stop-mongodb-server':
+      command => 'service mongod stop'
+    }
+    ->
+    notify { 'MongoDB-disable-autostart':
+      message => 'autostart for MongoDB disabled and MongoDB server stopped'
+    }
+  }
+
   /*
     todo: make versions configurable
 
