@@ -65,7 +65,7 @@ class dbms::mysql {
   } else {
     exec { 'disable-autostart-for-mysql':
       command => 'update-rc.d -f mysql remove',
-      require => Package['mysql-server']
+      require => Package[$mysql_or_mariadb]
     }
     ->
     exec { 'stop-mysql-server':
