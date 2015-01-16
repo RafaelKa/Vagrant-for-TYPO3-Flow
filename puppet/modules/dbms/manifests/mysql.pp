@@ -59,7 +59,7 @@ class dbms::mysql {
     }
     ->
     notify { 'MySQL-enable-autostart':
-      message => 'autostart for MySQL enabled and server started'
+      message => 'autostart for MySQL enabled and MySQL server started'
     }
   } else {
     exec { 'disable-autostart-for-mysql':
@@ -72,7 +72,7 @@ class dbms::mysql {
     }
     ->
     notify { 'MySQL-disable-autostart':
-      message => 'autostart for MySQL disabled and server stopped'
+      message => 'autostart for MySQL disabled and MySQL server stopped'
     }
   }
 
