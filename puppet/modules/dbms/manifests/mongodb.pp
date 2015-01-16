@@ -47,28 +47,4 @@ class dbms::mongodb {
     }
   }
 
-  /*
-    todo: make versions configurable
-
-  package {[
-    'mongodb-org=' + settings['MongoDB']['version'],
-    'mongodb-org-server=' + settings['MongoDB']['version'],
-    'mongodb-org-shell=' + settings['MongoDB']['version'],
-    'mongodb-org-mongos=' + settings['MongoDB']['version'],
-    'mongodb-org-tools=' + settings['MongoDB']['version']]:
-    ensure  => 'installed',
-    require => Apt::Source['mongodb']
-  }
-
-  exec{
-    'Pin a ' + settings['MongoDB']['version'] + ' version of MongoDB.' :
-    command => 'echo "mongodb-org hold" | dpkg --set-selections; ' +
-               'echo "mongodb-org-server hold" | dpkg --set-selections; ' +
-               'echo "mongodb-org-shell hold" | dpkg --set-selections; ' +
-               'echo "mongodb-org-mongos hold" | dpkg --set-selections; ' +
-               'echo "mongodb-org-tools hold" | dpkg --set-selections; ' +
-  }
-
-  */
-
 }
