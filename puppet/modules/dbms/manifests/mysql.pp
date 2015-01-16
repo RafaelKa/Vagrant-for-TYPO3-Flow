@@ -11,16 +11,47 @@ class dbms::mysql {
     include_deb       => true
   }
 
-  package { 'mysql-server':
-    ensure  => 'installed',
-    require => Apt::Source['mysql']
+  apt::source { 'mariadb':
+    comment           => 'This is the official repository for MariaDB',
+    location          => 'http://ftp.hosteurope.de/mirror/mariadb.org/repo/10.0/ubuntu',
+    release           => 'trusty',
+    repos             => 'main',
+    key               => '0xcbcb082a1bb943db',
+    key_server        => 'keyserver.ubuntu.com',
+    include_src       => true,
+    include_deb       => true
   }
 
+  ### MySQL and MariaDB can not be installed at same time by this way.
+  ### So one must be choosed
   $settings = hiera('dbms')
+  if $settings['MySQL']['prefer_maria_db'] == true {
+    $mysql_or_mariadb = 'mariadb-server'
+    package { 'software-properties-common':
+      ensure  => 'installed'
+    }
+    ->
+    package { 'mariadb-server':
+      ensure  => 'latest',
+      require => Apt::Source['mariadb']
+    }
+    ->
+    notify { 'MariaDB-instead-of-MySQL-will-be-installed':
+      message => 'MariaDB installed instead of MySQL.'
+    }
+    include dbms::mariadb
+  } else {
+    $mysql_or_mariadb = 'mysql-server'
+    package { 'mysql-server':
+      ensure  => 'installed',
+      require => Apt::Source['mysql']
+    }
+  }
+
   if $settings['MySQL']['autostart'] == true {
     exec { 'enable-autostart-for-mysql':
       command => 'update-rc.d mysql defaults',
-      require => Package['mysql-server']
+      require => Package[$mysql_or_mariadb]
     }
     ->
     exec { 'start-mysql-server':
