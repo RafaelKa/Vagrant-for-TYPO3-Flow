@@ -4,7 +4,9 @@ class dbms {
   ### So one must be choosed
   $settings = hiera('dbms')
   if $settings['MySQL']['prefer_maria_db'] == true {
-    notify { 'MariaDB will be installed instead of MySQL.': }
+    notify { 'MariaDB instead of MySQL':
+      message => 'MariaDB will be installed instead of MySQL.'
+    }
     include dbms::mariadb
   } else {
     include dbms::mysql

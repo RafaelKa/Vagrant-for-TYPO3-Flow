@@ -31,7 +31,7 @@ class serversidescripting::php_default {
     'libexpat1',
     'ssl-cert'
   ]:
-    ensure  => 'installed',
+    ensure  => 'installed'
 #    require => Apt::Ppa['ppa:ondrej/apache2']
   }
 

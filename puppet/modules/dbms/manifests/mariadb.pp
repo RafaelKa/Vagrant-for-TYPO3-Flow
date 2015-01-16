@@ -13,9 +13,10 @@ class dbms::mariadb {
 
   package { 'software-properties-common':
     ensure  => 'installed'
-  }->
+  }
+  ->
   package { 'mariadb-server':
-    ensure  => 'installed',
+    ensure  => 'latest',
     require => Apt::Source['mariadb']
   }
 

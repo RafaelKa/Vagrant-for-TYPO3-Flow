@@ -23,16 +23,18 @@ class dbms::mysql {
       refreshonly => true,
       subscribe => Package['mysql-server'],
     }
-    notify { 'enabling autostart for MySQL':
-      subscribe => Exec['enable-starting-mysql-server-on-start']
+    ->
+    notify { 'enable autostart for MySQL':
+      message => 'enabling autostart for MySQL'
     }
   } else {
     exec { 'disable-starting-mysql-server-on-start':
       command => 'service mysql stop',
       require => Package['mysql-server']
     }
-    notify { 'disabling autostart for MySQL':
-      subscribe => Exec['disable-starting-mysql-server-on-start'],
+    ->
+    notify { 'disable autostart for MySQL':
+      message => 'disabling autostart for MySQL'
     }
   }
 

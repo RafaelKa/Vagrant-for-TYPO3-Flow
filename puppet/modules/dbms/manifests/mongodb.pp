@@ -14,7 +14,7 @@ class dbms::mongodb {
 
   # latest stable release
   package { 'mongodb-org':
-    ensure  => 'installed',
+    ensure  => 'latest',
     require => Apt::Source['mongodb']
   }
 
