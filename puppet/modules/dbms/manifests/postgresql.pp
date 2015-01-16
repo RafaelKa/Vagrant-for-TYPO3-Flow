@@ -16,6 +16,7 @@ class dbms::postgresql {
     require => Apt::Source['postgresql']
   }
 
+  $settings = hiera('dbms')
   if $settings['PostgreSQL']['autostart'] == true {
     exec { 'enable-autostart-for-postgresql':
       command => 'update-rc.d postgresql defaults',
