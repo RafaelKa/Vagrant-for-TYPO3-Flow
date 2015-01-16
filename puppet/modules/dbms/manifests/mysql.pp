@@ -1,32 +1,22 @@
 class dbms::mysql {
 
-  apt::source { 'mysql':
-    comment           => 'This is the official repository for MySQL',
-    location          => 'http://repo.mysql.com/apt/ubuntu/',
-    release           => 'trusty',
-    repos             => 'mysql-5.6',
-    key               => '5072E1F5',
-    key_server        => 'pgp.mit.edu',
-    include_src       => true,
-    include_deb       => true
-  }
-
-  apt::source { 'mariadb':
-    comment           => 'This is the official repository for MariaDB',
-    location          => 'http://ftp.hosteurope.de/mirror/mariadb.org/repo/10.0/ubuntu',
-    release           => 'trusty',
-    repos             => 'main',
-    key               => '0xcbcb082a1bb943db',
-    key_server        => 'keyserver.ubuntu.com',
-    include_src       => true,
-    include_deb       => true
-  }
-
   ### MySQL and MariaDB can not be installed at same time by this way.
   ### So one must be choosed
   $settings = hiera('dbms')
   if $settings['MySQL']['prefer_maria_db'] == true {
     $mysql_or_mariadb = 'mariadb-server'
+
+    apt::source { 'mariadb':
+      comment           => 'This is the official repository for MariaDB',
+      location          => 'http://ftp.hosteurope.de/mirror/mariadb.org/repo/10.0/ubuntu',
+      release           => 'trusty',
+      repos             => 'main',
+      key               => '0xcbcb082a1bb943db',
+      key_server        => 'keyserver.ubuntu.com',
+      include_src       => true,
+      include_deb       => true
+    }
+
     package { 'software-properties-common':
       ensure  => 'installed'
     }
@@ -42,6 +32,18 @@ class dbms::mysql {
     include dbms::mariadb
   } else {
     $mysql_or_mariadb = 'mysql-server'
+
+    apt::source { 'mysql':
+      comment           => 'This is the official repository for MySQL',
+      location          => 'http://repo.mysql.com/apt/ubuntu/',
+      release           => 'trusty',
+      repos             => 'mysql-5.6',
+      key               => '5072E1F5',
+      key_server        => 'pgp.mit.edu',
+      include_src       => true,
+      include_deb       => true
+    }
+
     package { 'mysql-server':
       ensure  => 'installed',
       require => Apt::Source['mysql']
