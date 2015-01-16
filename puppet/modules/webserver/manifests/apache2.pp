@@ -3,7 +3,7 @@ class webserver::apache2 {
   apt::ppa { 'ppa:ondrej/apache2':}
 
   package { 'apache2':
-    ensure  => 'installed',
+    ensure  => 'latest',
     require => Apt::Ppa['ppa:ondrej/apache2']
   }->exec {'enabling mod_proxy_fcgi':
     command => 'a2enmod proxy_fcgi'

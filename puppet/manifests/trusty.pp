@@ -21,6 +21,12 @@ user { "vagrant":
   shell => "/bin/bash"
 }
 
+### exec apt-get update for each package
+exec { "apt-update":
+  command => "/usr/bin/apt-get update"
+}
+Exec["apt-update"] -> Package <| |>
+
 class { 'apt':
   always_apt_update => true
 }

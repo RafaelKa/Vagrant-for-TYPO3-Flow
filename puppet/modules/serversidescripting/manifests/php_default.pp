@@ -1,6 +1,6 @@
 class serversidescripting::php_default {
 
-  $php_packages = [
+  package { [
     'php5',
     'php5-common',
     'php5-gd',
@@ -8,7 +8,6 @@ class serversidescripting::php_default {
     'php5-imap',
     'phpmyadmin',
     'php5-cli',
-    'php5-cgi',
     'php-pear',
     'php-auth',
     'php5-mcrypt',
@@ -22,7 +21,7 @@ class serversidescripting::php_default {
     'php5-ming',
     'php5-ps',
     'php5-pspell',
-    'php5-recode',
+#    'php5-recode',
     'php5-fpm',
     'php5-sqlite',
     'php5-tidy',
@@ -31,10 +30,9 @@ class serversidescripting::php_default {
     'memcached',
     'libexpat1',
     'ssl-cert'
-  ]
-
-  package { $php_packages:
-    ensure  => 'installed'
+  ]:
+    ensure  => 'installed',
+#    require => Apt::Ppa['ppa:ondrej/apache2']
   }
 
 }
