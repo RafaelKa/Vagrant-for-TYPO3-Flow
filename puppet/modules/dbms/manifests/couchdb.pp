@@ -15,7 +15,7 @@ class dbms::couchdb {
     }
     ->
     notify { 'CouchDB-enable-autostart':
-      message => 'enabling autostart and starting CouchDB'
+      message => 'enabled autostart and started CouchDB'
     }
   } else {
     exec { 'disable-starting-couchdb-on-start':
@@ -24,7 +24,7 @@ class dbms::couchdb {
     }
     ->
     notify { 'CouchDB-disable-autostart':
-      message => 'disabling autostart and stopping CouchDB'
+      message => 'disabled autostart and stopped CouchDB'
     }
   }
 

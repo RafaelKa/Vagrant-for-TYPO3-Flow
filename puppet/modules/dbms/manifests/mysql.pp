@@ -19,8 +19,8 @@ class dbms::mysql {
   $settings = hiera('dbms')
   if $settings['MySQL']['autostart'] == true {
     exec { 'enable-starting-mysql-server-on-start':
-      command => 'service mysql start',
-      refreshonly => true,
+      command => 'update-rc.d mysql defaults && service mysql start',
+#      refreshonly => true,
       subscribe => Package['mysql-server'],
     }
     ->
@@ -29,8 +29,8 @@ class dbms::mysql {
     }
   } else {
     exec { 'disable-starting-mysql-server-on-start':
-      command => 'service mysql stop',
-      require => Package['mysql-server']
+      command => 'update-rc.d -f mysql remove && service mysql stop',
+      subscribe => Package['mysql-server']
     }
     ->
     notify { 'disable autostart for MySQL':
