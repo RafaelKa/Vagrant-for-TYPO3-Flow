@@ -11,7 +11,7 @@ dbms:
     root_password: ''
 
   PostgreSQL:
-    autostart: false
+    autostart: true
     password: ''
 
   CouchDB:
