@@ -4,7 +4,9 @@
 ---
 dbms:
   MySQL:
-    prefer_maria_db: false
+  ## MySQL and MariaDB can not be installed at same time, therefore one of them must be choosed.
+  ## Set to true if you want MariaDB
+    prefer_maria_db: true
     autostart: true
     root_password: ''
 
