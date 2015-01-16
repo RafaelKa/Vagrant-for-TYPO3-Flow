@@ -3,28 +3,36 @@ class dbms::couchdb {
   apt::ppa { 'ppa:couchdb/stable':}
 
   package { 'couchdb':
-    ensure  => 'installed',
+    ensure  => 'latest',
     require => Apt::Ppa['ppa:couchdb/stable']
   }
 
   $settings = hiera('dbms')
   if $settings['CouchDB']['autostart'] == true {
     exec { 'enable-starting-couchdb-on-start':
-      command => 'rm -f /etc/init/couchdb.override && service couchdb start',
+      command => 'update-rc.d couchdb defaults',
       require => Package['couchdb']
+    }
+    ->
+    exec { 'start-couchdb-server':
+      command => 'service couchdb start'
     }
     ->
     notify { 'CouchDB-enable-autostart':
-      message => 'enabled autostart and started CouchDB'
+      message => 'autostart enabled and started CouchDB server'
     }
   } else {
     exec { 'disable-starting-couchdb-on-start':
-      command => 'echo "manual" | tee /etc/init/couchdb.override && service couchdb stop',
+      command => 'update-rc.d -f couchdb remove',
       require => Package['couchdb']
     }
     ->
+    exec { 'stop-couchdb-server':
+      command => 'service couchdb stop'
+    }
+    ->
     notify { 'CouchDB-disable-autostart':
-      message => 'disabled autostart and stopped CouchDB'
+      message => 'autostart disabled and stopped CouchDB server'
     }
   }
 
