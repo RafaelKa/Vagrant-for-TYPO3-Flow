@@ -12,7 +12,7 @@ class webserver::nginx {
   }
 
   package { 'nginx':
-    ensure  => 'installed',
+    ensure  => 'latest',
     require => Apt::Source['nginx']
   }
 }
