@@ -9,12 +9,20 @@ class webserver::apache2 {
 
   exec {'enabling mod_proxy_fcgi':
     command => 'a2enmod proxy_fcgi',
-#    subscribe => Package['apache2'],
     require => Package['apache2']
   }
   ->
   notify { 'enable mod_proxy_fcgi':
     message => 'mod_proxy_fcgi enabled'
+  }
+
+  exec {'enabling mod_rewrite':
+    command => 'a2enmod rewrite',
+    require => Package['apache2']
+  }
+  ->
+  notify { 'enable mod_rewrite':
+    message => 'mod_rewrite enabled'
   }
 
 #  exec {'disabling mod_':
