@@ -66,7 +66,7 @@ class webserver::apache2 {
     mode    => '0644',
     ensure  => file,
     require => Package['apache2'],
-    content => template('templates/default.vhost.erb')
+    content => template('webserver/default.vhost.erb')
   }
   ->
   notify { 'mass-vhost-configuration-applied':
