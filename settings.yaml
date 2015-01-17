@@ -28,7 +28,7 @@ dbms:
     password: ''
 
 webserver:
-  ApacheHTTPd:
+  Apache:
     autostart: true
 
   NginX:
