@@ -60,8 +60,7 @@ class webserver::apache2 {
   }
 
   # Configure Apache HTTPd to run PHP with FPM
-  file { 'apache-default-host':
-    path => '/etc/apache2/sites-available/000-default.conf',
+  file { '/etc/apache2/sites-available/000-default.conf':
     owner   => 'root',
     group   => 'root',
     mode    => '0644',
