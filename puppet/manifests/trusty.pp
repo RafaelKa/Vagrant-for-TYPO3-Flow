@@ -31,6 +31,6 @@ class { 'apt':
   always_apt_update => true
 }
 
-#include dbms
+include dbms
 include webserver
 #include serversidescripting
