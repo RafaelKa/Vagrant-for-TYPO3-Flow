@@ -7,28 +7,41 @@ class webserver::apache2 {
     require => Apt::Ppa['ppa:ondrej/apache2']
   }
 
-  exec {'enabling mod_proxy_fcgi':
+  exec {'enabling-mod_proxy_fcgi':
     command => 'a2enmod proxy_fcgi',
     require => Package['apache2']
   }
   ->
-  notify { 'enable mod_proxy_fcgi':
+  notify { 'enable-mod_proxy_fcgi':
     message => 'mod_proxy_fcgi enabled'
   }
 
-  exec {'enabling mod_rewrite':
+  exec {'enabling-mod_rewrite':
     command => 'a2enmod rewrite',
     require => Package['apache2']
   }
   ->
-  notify { 'enable mod_rewrite':
+  notify { 'enable-mod_rewrite':
     message => 'mod_rewrite enabled'
   }
 
-  #  exec {'disabling mod_':
-  #    command => 'a2enmod proxy_fcgi',
-  #    require => Package['apache2']
-  #  }
+  exec {'enabling-mod_vhost_alias':
+    command => 'a2enmod vhost_alias',
+    require => Package['apache2']
+  }
+  ->
+  notify { 'enable-mod_vhost_alias':
+    message => 'mod_vhost_alias enabled'
+  }
+
+#  exec {'change-owner-for-var_www':
+#    command => 'chown -R www-data:www-data /var/www',
+#    require => Package['apache2']
+#  }
+#  ->
+#  notify { 'change-owner-for-var_www':
+#    message => 'set www-data as owner from /var/www/'
+#  }
 
   $settings = hiera('webserver')
   if $settings['Apache']['autostart'] == true {
@@ -58,19 +71,4 @@ class webserver::apache2 {
       message => 'autostart for Apache HTTPd disabled and Apache HTTPd server stopped'
     }
   }
-
-  # Configure Apache HTTPd to run PHP with FPM
-  file { '/etc/apache2/sites-available/000-default.conf':
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    ensure  => file,
-    require => Package['apache2'],
-    content => template('webserver/default.vhost.erb')
-  }
-  ->
-  notify { 'mass-vhost-configuration-applied':
-    message => 'mass hosting configuration for Apache HTTPd applied'
-  }
-
 }

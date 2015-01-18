@@ -2,11 +2,12 @@ class dbms::postgresql {
 
   apt::source { 'postgresql':
     comment           => 'This is the official repository for PostgreSQL',
-    location          => 'http://apt.postgresql.org/pub/repos/apt ',
+    location          => 'http://apt.postgresql.org/pub/repos/apt',
     release           => 'trusty-pgdg',
     repos             => 'main',
     key               => 'ACCC4CF8',
-    key_server        => 'p80.pool.sks-keyservers.net',
+#    key_server        => 'p80.pool.sks-keyservers.net',
+    key_source        => 'https://www.postgresql.org/media/keys/ACCC4CF8.asc',
     include_src       => true,
     include_deb       => true
   }

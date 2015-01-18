@@ -1,0 +1,16 @@
+
+UseCanonicalName Off
+VirtualDocumentRoot /var/www/projects/%0/Web
+
+<VirtualHost *:8080>
+	<Directory /var/www/projects/*/Web >
+		Order Allow,Deny
+		Allow from All
+		AllowOverride All
+		Require all granted
+
+		<FilesMatch "\.php$" >
+			SetHandler "proxy:unix:/var/run/typo3-flow.sock|fcgi://."
+		</FilesMatch>
+	</Directory>
+</VirtualHost>

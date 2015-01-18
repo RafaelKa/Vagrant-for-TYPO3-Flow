@@ -35,4 +35,13 @@ class serversidescripting::php_default {
 #    require => Apt::Ppa['ppa:ondrej/apache2']
   }
 
+  exec { 'composer-install':
+    command => 'mkdir -p /usr/share/php/composer; curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/share/php/composer; ln -s /usr/share/php/composer/composer.phar /usr/bin/composer',
+    require => Package['php5-cli']
+  }
+  ->
+  notify { 'composer-is-installed':
+    message => 'composer "Dependency Manager for PHP" installed'
+  }
+
 }
