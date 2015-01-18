@@ -38,12 +38,23 @@ class serversidescripting::php_default {
   $settings = hiera('serversidescripting')
   exec { 'set-datetimezone-for-php':
     # todo : use $settings['php']['default']['timezone']
-    command => 'perl -pi -e \'s/^;date\.timezone =/date\.timezone = "UTC"/g;\' /etc/php5/*/php.ini'
+    command => 'perl -pi -e \'s/^;date\.timezone =/date\.timezone = "UTC"/g;\' /etc/php5/*/php.ini',
+    require => [ Package['php5-cli'], Package['php5-fpm']]
   }
   ->
   notify { 'datetimezone-for-php-is-set':
     message => 'Timezone for PHP changed to UTC.'
   }
+
+  exec { 'set-memory_limit-to-512M-for-php-fpm':
+    command => 'perl -pi -e \'s/^memory_limit = 128M/memory_limit = 512M/g;\' /etc/php5/fpm/php.ini',
+    require => [ Package['php5-fpm']]
+  }
+  ->
+  notify { 'memory_limit-for-php-fpm-set':
+    message => 'Memory limit for PHP-FPM is set to 512M'
+  }
+
 
   exec { 'composer-install':
     command => 'mkdir -p /usr/share/php/composer; curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/share/php/composer; ln -s /usr/share/php/composer/composer.phar /usr/bin/composer',

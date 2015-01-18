@@ -10,7 +10,7 @@ VirtualDocumentRoot /var/www/projects/%0/Web
 		Require all granted
 
 		<FilesMatch "\.php$" >
-			SetHandler "proxy:unix:/var/run/typo3-flow.sock|fcgi://."
+			SetHandler "proxy:unix:/var/run/php5-fpm.sock|fcgi://."
 		</FilesMatch>
 	</Directory>
 </VirtualHost>

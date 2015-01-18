@@ -1,20 +1,7 @@
 class hosting {
 
   user { 'typo3-flow':
-    name        => 'typo3-flow',
-    home        => '/var/www/projects',
-    managehome  =>  false,
-    ensure      => present,
-    shell       => '/bin/false',
-    allowdupe   => true,
-    uid         => 33,
-    gid         => 'www-data',
-
-    require     => Package['apache2']
-  }
-
-  user { 'typo3-flow-ssh':
-    name        => 'typo3-flow-ssh',
+    name        => 'typo3',
     home        => '/var/www/projects',
     managehome  =>  false,
     ensure      => present,
@@ -22,11 +9,13 @@ class hosting {
     uid         => 33,
     allowdupe   => true,
     gid         => 'www-data',
-    # password: typo3-flow
-    password    => '$6$/hIk9.lgRIvEShZ2$M9qvJfEmMQpuXDjsyfrq4427EiTD9Sio1dxdGqUQMQG4k20n53W7eGYRFw0qNKKhJfwR2q/TWfAnI0awZAK6J/',
-
-
+    # password: typo3
+    password    => '$6$rOvX7PUSps1aYZ$mTGeOPYKy.Y9pcB90m.P4SDw5Ecidn6WuheGUAC8yFgL9ulHLMpBTwTMcm74UzGqm2Aj83fiYVC2UTaOQ8zF11',
     require     => Package['apache2']
+  }
+  ->
+  notify { 'ssh-user-for-typo3-flow-created':
+    message => 'SSH user typo3 created. \nUser: typo3\nPassword: typo3'
   }
 
   file { "/var/www/projects":
