@@ -49,8 +49,8 @@ class hosting {
     require => [ User['typo3-flow'], Package['apache2']]
   }
   ->
-  notify { 'directory-for-hosting-created':
-    message => 'directory /var/www/projects for your projects created'
+  notify { 'directory-for-logs-created':
+    message => 'directory /var/www/logs for the log files from your projects created'
   }
 
 
