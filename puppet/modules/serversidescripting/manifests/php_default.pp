@@ -37,7 +37,8 @@ class serversidescripting::php_default {
 
   $settings = hiera('serversidescripting')
   exec { 'set-datetimezone-for-php':
-    command => 'perl -pi -e \'s/^;date\.timezone =/date\.timezone = "' + $settings['php']['default']['timezone'] + ' "/g;\' /etc/php5/*/php.ini'
+    # todo : use $settings['php']['default']['timezone']
+    command => 'perl -pi -e \'s/^;date\.timezone =/date\.timezone = "UTC"/g;\' /etc/php5/*/php.ini'
   }
   ->
   notify { 'datetimezone-for-php-is-set':
