@@ -25,6 +25,12 @@ user { "vagrant":
 exec { "apt-update":
   command => "/usr/bin/apt-get update"
 }
+
+exec { "apt-upgrade":
+  command => "/usr/bin/apt-get upgrade -y",
+  require => Exec["apt-update"]
+}
+
 Exec["apt-update"] -> Package <| |>
 
 class { 'apt':
