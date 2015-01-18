@@ -1,6 +1,6 @@
 class hosting {
 
-  user { 'typo3-flow':
+  user { 'typo3':
     name        => 'typo3',
     home        => '/var/www/projects',
     managehome  =>  false,
@@ -14,16 +14,16 @@ class hosting {
     require     => Package['apache2']
   }
   ->
-  notify { 'ssh-user-for-typo3-flow-created':
+  notify { 'ssh-user-typo3-created':
     message => 'SSH user typo3 created. \nUser: typo3\nPassword: typo3'
   }
 
   file { "/var/www/projects":
     ensure => directory,
-    owner => 'typo3-flow',
+    owner => 'typo3',
     group => 'www-data',
     mode => 0750,
-    require => [ User['typo3-flow'], Package['apache2']]
+    require => [ User['typo3'], Package['apache2']]
   }
   ->
   notify { 'directory-for-hosting-created':
@@ -32,10 +32,10 @@ class hosting {
 
   file { "/var/www/logs":
     ensure => directory,
-    owner => 'typo3-flow',
+    owner => 'typo3',
     group => 'www-data',
     mode => 0750,
-    require => [ User['typo3-flow'], Package['apache2']]
+    require => [ User['typo3'], Package['apache2']]
   }
   ->
   notify { 'directory-for-logs-created':
