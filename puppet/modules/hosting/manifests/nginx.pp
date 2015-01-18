@@ -1,0 +1,3 @@
+class hosting::nginx {
+
+}

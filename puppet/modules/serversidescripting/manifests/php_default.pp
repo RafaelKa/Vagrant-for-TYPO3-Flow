@@ -35,6 +35,15 @@ class serversidescripting::php_default {
 #    require => Apt::Ppa['ppa:ondrej/apache2']
   }
 
+  $settings = hiera('serversidescripting')
+  exec { 'set-datetimezone-for-php':
+    command => 'perl -pi -e \'s/^;date\.timezone =/date\.timezone = "' + $settings['php']['default']['timezone'] + ' "/g;\' /etc/php5/*/php.ini'
+  }
+  ->
+  notify { 'datetimezone-for-php-is-set':
+    message => 'Timezone for PHP changed to UTC.'
+  }
+
   exec { 'composer-install':
     command => 'mkdir -p /usr/share/php/composer; curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/share/php/composer; ln -s /usr/share/php/composer/composer.phar /usr/bin/composer',
     require => Package['php5-cli']
@@ -42,6 +51,15 @@ class serversidescripting::php_default {
   ->
   notify { 'composer-is-installed':
     message => 'composer "Dependency Manager for PHP" installed'
+  }
+
+  exec { 'composer-update-script':
+    command => 'echo -e \'#!/bin/bash\n/usr/share/php/composer/composer.phar self-update\' > /usr/bin/composer-self-update; chmod 750 /usr/bin/composer-self-update',
+    require => Exec['composer-install']
+  }
+  ->
+  notify { 'composer-update-script-created':
+    message => 'Update script for composer "Dependency Manager for PHP" created. Run "sudo omposer-self-update" to update composer.'
   }
 
 }

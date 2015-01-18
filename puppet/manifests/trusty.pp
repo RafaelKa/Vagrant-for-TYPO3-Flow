@@ -31,6 +31,10 @@ class { 'apt':
   always_apt_update => true
 }
 
+package { 'git':
+  ensure  => 'installed'
+}
+
 include dbms
 include webserver
 include serversidescripting
