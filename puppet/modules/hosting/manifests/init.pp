@@ -1,10 +1,12 @@
 class hosting {
+
   user { 'typo3-flow':
     name        => 'typo3-flow',
     home        => '/var/www/projects/',
     managehome  =>  true,
     ensure      => present,
     shell       => '/bin/false',
+    allowdupe   => true,
     uid         => 33,
     gid         => 'www-data'
   }
@@ -16,6 +18,7 @@ class hosting {
     ensure      => present,
     shell       => '/bin/bash',
     uid         => 33,
+    allowdupe   => true,
     gid         => 'www-data',
     # password: typo3-flow
     password    => '$6$/hIk9.lgRIvEShZ2$M9qvJfEmMQpuXDjsyfrq4427EiTD9Sio1dxdGqUQMQG4k20n53W7eGYRFw0qNKKhJfwR2q/TWfAnI0awZAK6J/'
