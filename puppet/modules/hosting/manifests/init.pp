@@ -2,26 +2,31 @@ class hosting {
 
   user { 'typo3-flow':
     name        => 'typo3-flow',
-    home        => '/var/www/projects/',
-    managehome  =>  true,
+    home        => '/var/www/projects',
+    managehome  =>  false,
     ensure      => present,
     shell       => '/bin/false',
     allowdupe   => true,
     uid         => 33,
-    gid         => 'www-data'
+    gid         => 'www-data',
+
+    require     => Package['apache2']
   }
 
   user { 'typo3-flow-ssh':
     name        => 'typo3-flow-ssh',
-    home        => '/var/www/projects/',
-    managehome  =>  true,
+    home        => '/var/www/projects',
+    managehome  =>  false,
     ensure      => present,
     shell       => '/bin/bash',
     uid         => 33,
     allowdupe   => true,
     gid         => 'www-data',
     # password: typo3-flow
-    password    => '$6$/hIk9.lgRIvEShZ2$M9qvJfEmMQpuXDjsyfrq4427EiTD9Sio1dxdGqUQMQG4k20n53W7eGYRFw0qNKKhJfwR2q/TWfAnI0awZAK6J/'
+    password    => '$6$/hIk9.lgRIvEShZ2$M9qvJfEmMQpuXDjsyfrq4427EiTD9Sio1dxdGqUQMQG4k20n53W7eGYRFw0qNKKhJfwR2q/TWfAnI0awZAK6J/',
+
+
+    require     => Package['apache2']
   }
 
   file { "/var/www/projects":
@@ -29,7 +34,11 @@ class hosting {
     owner => 'typo3-flow',
     group => 'www-data',
     mode => 0750,
-    require => User['typo3-flow']
+    require => [ User['typo3-flow'], Package['apache2']]
+  }
+  ->
+  notify { 'directory-for-hosting-created':
+    message => 'directory /var/www/projects for your projects created'
   }
 
 
