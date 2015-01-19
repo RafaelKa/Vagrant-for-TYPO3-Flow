@@ -53,24 +53,25 @@ NOTE: Work in progress and currently not really usable
   * Click `next`
 5. Specify root folder on the remote server:
   * Right click on `Vagrant Box for TYPO3-Flow (typo3-flow.dev/var/www/projects/)` -> `Create Folder...`
-  * Enter folder name from step 5.9: `{lover-case-projectname[.dev]}` and click `OK`
+  * Enter folder name: `{lover-case-projectname[.dev]}`
+  * Click `OK`
   * Choose created folder and click on `Project Root` button on the top of current window
   * Click `next` and `Finish`
   * Automatic upload on save:
     * Choose `Tools` -> `Deployment` -> `Automatic Upload`
-6. Click `Tools` -> `Start SSH session`
+6. Install TYPO3 Flow with composer inside a Vagrant box:
+  * Click `Tools` -> `Start SSH session`
   * Choose `Vagrant Box for TYPO3-Flow`
-  * Run `composer create-project --dev --keep-vcs typo3/flow-base-distribution {lover-case-projectname[.dev]}` and other commands
+  * Run `composer create-project --dev --keep-vcs typo3/flow-base-distribution {lover-case-projectname[.dev]}`
+  * Run other commands f.x. `composer require ...`
 7. Download project files in projects root folder:
-  * Click `Tools` -> `Deployment` -> `Download from default server` or right click on the root directory in Project window and `Deployment` -> `Download from ......`
+  * Click `Tools` -> `Deployment` -> `Download from default server`
+    or right click on the root directory in Project window from PhpStorm and choose `Deployment` -> `Download from ......`
   * PhpStorm will download all TYPO3 Flow files in your project root. This can take a while(<3 minutes)
 
-## Notices
+## Notices Windows
 
-### Windows
-
-#### VBoxAdpNet.sys
-
-On `vagrant up` you will be asked for `VBoxAdpNet.sys` file. You must point in VirtualBox window on `C:\Program Files\Oracle\VirtualBox\drivers\network\netadp\VBoxNetAdp.sys`
+* VBoxAdpNet.sys
+  * On `vagrant up` you will be asked for `VBoxAdpNet.sys` file. You must point in VirtualBox window on `C:\Program Files\Oracle\VirtualBox\drivers\network\netadp\VBoxNetAdp.sys`
 
 
