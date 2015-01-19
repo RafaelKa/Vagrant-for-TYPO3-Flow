@@ -71,7 +71,8 @@ NOTE: Work in progress and currently not really usable
 
 ## Notices Windows
 
-* VBoxAdpNet.sys
-  * On `vagrant up` you will be asked for `VBoxAdpNet.sys` file. You must point in VirtualBox window on `C:\Program Files\Oracle\VirtualBox\drivers\network\netadp\VBoxNetAdp.sys`
+### VBoxAdpNet.sys
+
+On `vagrant up` you will be asked for `VBoxAdpNet.sys` file. You must point in VirtualBox window on `C:\Program Files\Oracle\VirtualBox\drivers\network\netadp\VBoxNetAdp.sys`
 
 
