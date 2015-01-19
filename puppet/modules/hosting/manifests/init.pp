@@ -15,7 +15,7 @@ class hosting {
   }
   ->
   notify { 'ssh-user-typo3-created':
-    message => 'SSH user typo3 created. \nUser: typo3\nPassword: typo3'
+    message => 'SSH user typo3 created. User: "typo3" and Password: "typo3"'
   }
 
   file { "/var/www/projects":
@@ -45,5 +45,6 @@ class hosting {
 
   include hosting::apache
   include hosting::php
+  include hosting::typo3_flow
 
 }
