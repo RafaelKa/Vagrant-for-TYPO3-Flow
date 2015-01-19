@@ -9,6 +9,10 @@ class hosting::apache {
     content => template('hosting/apache.default.vhost.erb')
   }
   ->
+  exec {'restart-apache2':
+    command => 'service apache2 restart'
+  }
+  ->
   notify { 'mass-vhost-configuration-applied':
     message => 'mass hosting configuration for Apache HTTPd applied'
   }
