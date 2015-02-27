@@ -71,7 +71,7 @@ class serversidescripting::php_default {
   }
   ->
   notify { 'composer-update-script-created':
-    message => 'Update script for composer "Dependency Manager for PHP" created. Run "sudo omposer-self-update" to update composer.'
+    message => 'Update script for composer "Dependency Manager for PHP" created. Run "sudo composer-self-update" to update composer.'
   }
 
 }
