@@ -23,7 +23,7 @@ class hosting {
     owner => 'typo3',
     group => 'www-data',
     mode => 0750,
-    require => [ User['typo3'], Package['apache2']]
+    require => User['typo3']
   }
   ->
   notify { 'directory-for-hosting-created':
