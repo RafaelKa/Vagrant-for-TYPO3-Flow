@@ -36,12 +36,14 @@ NOTE: Work in progress and currently not really usable
   * Password: `typo3`
   * Web server root URL: `http://typo3-flow.dev`
   * Check `Don't check HTTP conection to server` and click `next`
-6 Specify root folder on the remote server:
+6. Specify root folder on the remote server:
   * Choose `typo3-flow.dev` folder and click on `Project Root` button on the top of current window
   * Click `next` and then `Finish`
   * PhpStorm will download all TYPO3 Flow files in your project root. This can take a while(<3 minutes)
 7. Automatic upload on save:
   * Choose `Tools` -> `Deployment` -> `Automatic Upload`
+8. Go with your web browser to [typo3-flow.dev](http://typo3-flow.dev) (if it does not work on Windows check [hosts on Windows](#hostsfile))
+  * Follow the on-screen or [Quick Start Guide for TYPO3 Flow](http://docs.typo3.org/flow/TYPO3FlowDocumentation/Quickstart/Index.html) instructions.
 
 ##### Create new Project
 
@@ -68,6 +70,11 @@ NOTE: Work in progress and currently not really usable
   * Click `Tools` -> `Deployment` -> `Download from default server`
     or right click on the root directory in Project window from PhpStorm and choose `Deployment` -> `Download from ......`
   * PhpStorm will download all TYPO3 Flow files in your project root. This can take a while(<3 minutes)
+8. Add `192.168.144.100 {lover-case-projectname[.dev]}` line in /etc/hosts (Windows: %SystemRoot%\system32\drivers\etc\hosts) file.
+
+## Environment configuration
+
+You can use settings.yaml to enable and disable installation and auto start from services like MySQL, Apache, NginX, etc.
 
 ## Notices Windows
 
@@ -75,4 +82,14 @@ NOTE: Work in progress and currently not really usable
 
 On `vagrant up` you will be asked for `VBoxAdpNet.sys` file. You must point in VirtualBox window on `C:\Program Files\Oracle\VirtualBox\drivers\network\netadp\VBoxNetAdp.sys`
 
+### hosts file
 
+Vagrants plugin `vagrant-hostmanager` seems to get troubles with [hosts on Windows host machine](https://github.com/smdahlen/vagrant-hostmanager#windows-support).
+Therefore most likely on Windows machines you must add an entry manually in `hosts` file.
+
+* Run Editor as administrator and navigate to `%SystemRoot%\system32\drivers\etc` (always `C:\Windows\System32\drivers\etc` ) folder
+* Choose `show all files`
+* Choose `hosts` file and click `open`.
+* Add `192.168.144.100 {lover-case-projectname[.dev]}` line at the end of file.
+* Click save and close Editor
+* Now you can request `{lover-case-projectname[.dev]}` ind your web browser
