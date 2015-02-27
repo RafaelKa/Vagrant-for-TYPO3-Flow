@@ -29,7 +29,7 @@ NOTE: Work in progress and currently not really usable
   * Name: `Vagrant Box for TYPO3-Flow`
   * Type: `SFTP`
   * SFTP host: `typo3-flow.dev`
-  * Port: `2222`
+  * Port: `22`
   * Root path: `/var/www/projects/`
   * User name: `typo3`
   * Auth type: `Password`
