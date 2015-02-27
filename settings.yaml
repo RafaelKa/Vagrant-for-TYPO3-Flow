@@ -7,36 +7,45 @@ dbms:
   ## MySQL and MariaDB can not be installed at same time, therefore one of them must be choosed.
   ## Set to true if you want MariaDB
     prefer_maria_db: true
+    install: true
     autostart: true
     root_password: ''
 
   PostgreSQL:
     version: 9.4
+    install: false
     autostart: false
     password: ''
 
   CouchDB:
+    install: false
     autostart: false
     password: ''
 
   Couchbase:
+    install: false
     autostart: false
     password: ''
 
   MongoDB:
+    install: false
     autostart: true
     password: ''
 
 webserver:
   Apache:
+    install: true
     autostart: true
 
   NginX:
+    install: false
     autostart: false
     
 serversidescripting:
   php:
     default:
+      install: true
+      autostart: true
       timezone: UTC
       packages:
         - php5
@@ -69,3 +78,10 @@ serversidescripting:
         - libexpat1
         - ssl-cert'
       extensions:
+    custom:
+      5.5.20:
+        install: false
+        autostart: false
+        extensions:
+
+
