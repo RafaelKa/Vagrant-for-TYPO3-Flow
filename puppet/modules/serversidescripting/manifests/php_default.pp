@@ -55,19 +55,32 @@ class serversidescripting::php_default {
     message => 'Memory limit for PHP-FPM is set to 512M'
   }
 
+  # Composer
 
   exec { 'composer-install':
-    command => 'mkdir -p /usr/share/php/composer; curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/share/php/composer; ln -s /usr/share/php/composer/composer.phar /usr/bin/composer',
-    require => Package['php5-cli']
+    command => 'mkdir -p /usr/share/php/composer; curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/share/php/composer',
+    require => Package['php5-cli'],
+    creates => '/usr/share/php/composer'
   }
   ->
   notify { 'composer-is-installed':
-    message => 'composer "Dependency Manager for PHP" installed'
+    message => 'composer "Dependency Manager for PHP" installed in /usr/share/php/composer/ direcory'
+  }
+
+  exec { 'create-symlink-to-composer-in-path-directory':
+    command => 'ln -s /usr/share/php/composer/composer.phar /usr/bin/composer',
+    require => Exec['composer-install'],
+    creates => '/usr/bin/composer'
+  }
+  ->
+  notify { 'created-symlink-to-composer-in-path-directory':
+    message => 'Symlink /usr/bin/composer for composer.phar created. You can run "composer" command everywhere.'
   }
 
   exec { 'composer-update-script':
     command => 'echo -e \'#!/bin/bash\n/usr/share/php/composer/composer.phar self-update\' > /usr/bin/composer-self-update; chmod 750 /usr/bin/composer-self-update',
-    require => Exec['composer-install']
+    require => Exec['composer-install'],
+    creates => '/usr/bin/composer-self-update'
   }
   ->
   notify { 'composer-update-script-created':

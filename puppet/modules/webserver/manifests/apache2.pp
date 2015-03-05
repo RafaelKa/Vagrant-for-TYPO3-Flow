@@ -9,29 +9,32 @@ class webserver::apache2 {
 
   exec {'enabling-mod_proxy_fcgi':
     command => 'a2enmod proxy_fcgi',
-    require => Package['apache2']
+    require => Package['apache2'],
+    creates => '/etc/apache2/mods-enabled/proxy_fcgi.load'
   }
   ->
   notify { 'enable-mod_proxy_fcgi':
-    message => 'mod_proxy_fcgi enabled'
+    message => 'Apaches mod proxy_fcgi enabled'
   }
 
   exec {'enabling-mod_rewrite':
     command => 'a2enmod rewrite',
-    require => Package['apache2']
+    require => Package['apache2'],
+    creates => '/etc/apache2/mods-enabled/rewrite.load'
   }
   ->
   notify { 'enable-mod_rewrite':
-    message => 'mod_rewrite enabled'
+    message => 'Apaches mod rewrite enabled'
   }
 
   exec {'enabling-mod_vhost_alias':
     command => 'a2enmod vhost_alias',
-    require => Package['apache2']
+    require => Package['apache2'],
+    creates => '/etc/apache2/mods-enabled/vhost_alias.load'
   }
   ->
   notify { 'enable-mod_vhost_alias':
-    message => 'mod_vhost_alias enabled'
+    message => 'Apaches mod vhost_alias enabled'
   }
 
 #  exec {'change-owner-for-var_www':
@@ -60,7 +63,8 @@ class webserver::apache2 {
   } else {
     exec { 'disable-autostart-for-apache2':
       command => 'update-rc.d -f apache2 remove',
-      require => Package['apache2']
+      require => Package['apache2'],
+      onlyif => 'ls /etc/rc*.d | grep apache2'
     }
     ->
     exec { 'stop-apache-httpd-server':

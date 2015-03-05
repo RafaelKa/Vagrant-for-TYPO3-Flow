@@ -43,6 +43,8 @@ class hosting {
   }
 
 
+  # @todo: choose Apache HTTPd or NginX in settingy.yaml
+
   include hosting::apache
   include hosting::php
   include hosting::typo3_flow
