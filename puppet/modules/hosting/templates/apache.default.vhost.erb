@@ -3,6 +3,9 @@ UseCanonicalName Off
 VirtualDocumentRoot /var/www/projects/%0/Web
 
 <VirtualHost *:80>
+
+	SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+
 	<Directory /var/www/projects/*/Web >
 		Order Allow,Deny
 		Allow from All
