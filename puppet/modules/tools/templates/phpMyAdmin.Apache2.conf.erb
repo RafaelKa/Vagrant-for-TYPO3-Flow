@@ -1,0 +1,15 @@
+Alias /tools/phpmyadmin /var/www/tools/phpmyadmin
+
+<Directory /var/www/tools/phpmyadmin>
+        SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+
+        Order Allow,Deny
+        Allow from All
+        AllowOverride All
+        Require all granted
+
+        <FilesMatch "\.php$" >
+                SetHandler "proxy:unix:/var/run/php5-fpm.sock|fcgi://."
+        </FilesMatch>
+
+</Directory>
