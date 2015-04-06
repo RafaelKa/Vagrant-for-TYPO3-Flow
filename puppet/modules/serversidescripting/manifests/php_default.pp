@@ -78,7 +78,7 @@ class serversidescripting::php_default {
   }
 
   exec { 'composer-update-script':
-    command => 'echo -e \'#!/bin/bash\n/usr/share/php/composer/composer.phar self-update\' > /usr/bin/composer-self-update; chmod 750 /usr/bin/composer-self-update',
+    command => 'echo \'#!/bin/bash\n/usr/share/php/composer/composer.phar self-update\' > /usr/bin/composer-self-update; chmod 750 /usr/bin/composer-self-update',
     require => Exec['composer-install'],
     creates => '/usr/bin/composer-self-update'
   }
