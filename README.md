@@ -55,7 +55,7 @@ NOTE: Work in progress and currently not really usable
   * Click `next`
 5. Specify root folder on the remote server:
   * Right click on `Vagrant Box for TYPO3-Flow (typo3-flow.dev/var/www/projects/)` -> `Create Folder...`
-  * Enter folder name: `{lover-case-projectname[.dev]}`
+  * Enter folder name: `{lower-case-projectname[.dev]}`
   * Click `OK`
   * Choose created folder and click on `Project Root` button on the top of current window
   * Click `next` and `Finish`
@@ -64,13 +64,13 @@ NOTE: Work in progress and currently not really usable
 6. Install TYPO3 Flow with composer inside a Vagrant box:
   * Click `Tools` -> `Start SSH session`
   * Choose `Vagrant Box for TYPO3-Flow`
-  * Run `composer create-project --dev --keep-vcs typo3/flow-base-distribution {lover-case-projectname[.dev]}`
+  * Run `composer create-project --dev --keep-vcs typo3/flow-base-distribution {lower-case-projectname[.dev]}`
   * Run other commands f.x. `composer require ...`
 7. Download project files in projects root folder:
   * Click `Tools` -> `Deployment` -> `Download from default server`
     or right click on the root directory in Project window from PhpStorm and choose `Deployment` -> `Download from ......`
   * PhpStorm will download all TYPO3 Flow files in your project root. This can take a while(<3 minutes)
-8. Add `192.168.144.100 {lover-case-projectname[.dev]}` line in /etc/hosts (Windows: %SystemRoot%\system32\drivers\etc\hosts) file.
+8. Add `192.168.144.100 {lower-case-projectname[.dev]}` line in /etc/hosts (Windows: %SystemRoot%\system32\drivers\etc\hosts) file.
 
 ## Environment configuration
 
@@ -90,6 +90,6 @@ Therefore most likely on Windows machines you must add an entry manually in `hos
 * Run Editor as administrator and navigate to `%SystemRoot%\system32\drivers\etc` (always `C:\Windows\System32\drivers\etc` ) folder
 * Choose `show all files`
 * Choose `hosts` file and click `open`.
-* Add `192.168.144.100 {lover-case-projectname[.dev]}` line at the end of file.
+* Add `192.168.144.100 {lower-case-projectname[.dev]}` line at the end of file.
 * Click save and close Editor
-* Now you can request `{lover-case-projectname[.dev]}` ind your web browser
+* Now you can request `{lower-case-projectname[.dev]}` ind your web browser
