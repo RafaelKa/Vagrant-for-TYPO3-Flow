@@ -8,7 +8,9 @@ NOTE: Work in progress and currently not really usable
 3. Clone this repository and cd in its directory
 4. Install Vagrant plugin to manage hostname for first project automatically.
   * Run `vagrant plugin install vagrant-hostmanager`
-5. Run `vagrant up` (Windows user notice: [missing VBoxAdpNet.sys](#vboxadpnetsys) )
+5. Run `vagrant up` 
+  * will ask password on Unix-like OS. This is for write acces on hosts file by `vagrant-hostmanager`.
+  * Notice for Windows users: [missing VBoxAdpNet.sys](#vboxadpnetsys)
 6. Setup your IDE for using project as project on remote host.
 
 
