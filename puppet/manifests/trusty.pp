@@ -34,7 +34,7 @@ exec { "apt-update":
 Exec["apt-update"] -> Package <| |>
 
 class { 'apt':
-  always_apt_update => true
+  update => { 'frequency' => 'always' }
 }
 
 package { 'git':
@@ -45,3 +45,4 @@ include dbms
 include webserver
 include serversidescripting
 include hosting
+include tools

@@ -5,10 +5,14 @@ class webserver::nginx {
     location          => 'http://nginx.org/packages/ubuntu/',
     release           => 'trusty',
     repos             => 'nginx',
-    key               => 'ABF5BD827BD9BF62',
-    key_server        => 'keyserver.ubuntu.com',
-    include_src       => true,
-    include_deb       => true
+    key               => {
+      id     => 'ABF5BD827BD9BF62',
+      source  => 'http://nginx.org/keys/nginx_signing.key',
+    },
+    include           => {
+      'src'  =>  true,
+      'deb'  =>  true
+    }
   }
 
   package { 'nginx':

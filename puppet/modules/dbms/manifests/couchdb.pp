@@ -1,6 +1,8 @@
 class dbms::couchdb {
 
-  apt::ppa { 'ppa:couchdb/stable':}
+  apt::ppa { 'ppa:couchdb/stable':
+    before => Exec['apt-update']
+  }
 
   package { 'couchdb':
     ensure  => 'latest',

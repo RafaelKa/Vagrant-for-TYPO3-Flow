@@ -1,9 +1,14 @@
 class tools {
 
+  package { 'unzip':
+    ensure  => 'latest'
+  }
+
   file { "/var/www/tools":
     ensure => directory,
     owner => 'www-data',
     group => 'www-data',
+    require => User['typo3'],
     mode => 0750
   }
   ->

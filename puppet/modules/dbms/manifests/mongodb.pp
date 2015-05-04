@@ -5,11 +5,15 @@ class dbms::mongodb {
     location          => 'http://downloads-distro.mongodb.org/repo/ubuntu-upstart',
     release           => 'dist',
     repos             => '10gen',
-    key               => '7F0CEB10',
-    key_server        => 'keyserver.ubuntu.com',
+    key               => {
+      id     => '7F0CEB10',
+      server  => 'keyserver.ubuntu.com',
+    },
     ## sources does not exist currently
-    include_src       => false,
-    include_deb       => true
+    include           => {
+      'src'  =>  false,
+      'deb'  =>  true
+    }
   }
 
   # latest stable release

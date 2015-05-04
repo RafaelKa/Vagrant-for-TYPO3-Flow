@@ -11,10 +11,15 @@ class dbms::mysql {
       location          => 'http://ftp.hosteurope.de/mirror/mariadb.org/repo/10.0/ubuntu',
       release           => 'trusty',
       repos             => 'main',
-      key               => '0xcbcb082a1bb943db',
-      key_server        => 'keyserver.ubuntu.com',
-      include_src       => true,
-      include_deb       => true
+      key               => {
+        id     => '199369E5404BD5FC7D2FE43BCBCB082A1BB943DB',
+        server  => 'keyserver.ubuntu.com',
+      },
+
+      include           => {
+        'src'  =>  true,
+        'deb'  =>  true
+      }
     }
 
     package { 'software-properties-common':
@@ -37,10 +42,14 @@ class dbms::mysql {
       location          => 'http://repo.mysql.com/apt/ubuntu/',
       release           => 'trusty',
       repos             => 'mysql-5.6',
-      key               => '5072E1F5',
-      key_server        => 'pgp.mit.edu',
-      include_src       => true,
-      include_deb       => true
+      key               => {
+        id     => 'A4A9406876FCBD3C456770C88C718D3B5072E1F5',
+        server  => 'pgp.mit.edu',
+      },
+      include           => {
+        'src'  =>  true,
+        'deb'  =>  true
+      }
     }
 
     package { 'mysql-server':

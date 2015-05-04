@@ -1,19 +1,23 @@
 class dbms::postgresql {
 
   apt::source { 'postgresql':
-    comment           => 'This is the official repository for PostgreSQL',
-    location          => 'http://apt.postgresql.org/pub/repos/apt',
-    release           => 'trusty-pgdg',
-    repos             => 'main',
-    key               => 'ACCC4CF8',
-#    key_server        => 'p80.pool.sks-keyservers.net',
-    key_source        => 'https://www.postgresql.org/media/keys/ACCC4CF8.asc',
-    include_src       => true,
-    include_deb       => true
+    comment   => 'This is the official repository for PostgreSQL',
+    location  => 'http://apt.postgresql.org/pub/repos/apt',
+    release   => 'trusty-pgdg',
+    repos     => 'main',
+    key       => {
+      id       => 'B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8',
+      #server  => 'p80.pool.sks-keyservers.net',
+      source  => 'https://www.postgresql.org/media/keys/ACCC4CF8.asc',
+    },
+    include   => {
+      'src'  =>  true,
+      'deb'  =>  true
+    }
   }
 
   package { 'postgresql-9.4':
-    ensure  => 'installed',
+    ensure  => 'latest',
     require => Apt::Source['postgresql']
   }
 

@@ -1,6 +1,8 @@
 class webserver::apache2 {
 
-  apt::ppa { 'ppa:ondrej/apache2':}
+  apt::ppa { 'ppa:ondrej/apache2':
+    before => Exec['apt-update']
+  }
 
   package { 'apache2':
     ensure  => 'latest',
