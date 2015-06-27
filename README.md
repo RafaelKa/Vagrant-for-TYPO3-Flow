@@ -1,5 +1,4 @@
 # Vagrant Box for TYPO3-Flow
-NOTE: Work in progress and currently not really usable
 
 ## Setup
 
