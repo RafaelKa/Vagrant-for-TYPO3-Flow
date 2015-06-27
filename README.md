@@ -78,6 +78,16 @@
   * PhpStorm will download all TYPO3 Flow files in your project root. This can take a while(<3 minutes)
 8. Add `192.168.144.100 {lower-case-projectname[.dev]}` line in /etc/hosts (Windows: %SystemRoot%\system32\drivers\etc\hosts) file.
 
+## Available tools
+
+* PhpMyAdmin 
+  * addrsees:
+    * each reachable address of current vagrant box + /tools/phpmyadmin  
+    * http://typo3-flow.dev/tools/phpmyadmin
+    * http://192.168.144.100/tools/phpmyadmin
+    * http://{lower-case-projectname[.dev]}/tools/phpmyadmin
+  * login `root` no password
+
 ## Environment configuration
 
 ### Miltiple machines
