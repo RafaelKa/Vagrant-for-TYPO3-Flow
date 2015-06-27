@@ -14,11 +14,9 @@
   * Notice for Windows users: [missing VBoxAdpNet.sys](#vboxadpnetsys)
 6. Access to a shell by running following command:
   * Run `vagrant ssh`
-  * Run `sudo su - typo3` to login as typo3
-7. Setup your IDE for using project as project on remote host.
-
-
-
+7. Login as typo3 user in a shell
+  * Run `sudo su - typo3`
+8. Setup your IDE for using project as project on remote host.
 
 ### Setup your IDE
 
