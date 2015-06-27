@@ -84,7 +84,7 @@
 
 If you want to run multiple machines at same time, you can do that but you must customize following things:
 * assign own IP address and hostname for each Vagrant box:
-  * change `192.168.144.100` and `typo3-flow.de` in `Vagrantfile`
+  * change `192.168.144.100` and `typo3-flow.dev` in `Vagrantfile`
   * rename typo3-flow.dev folder to the in the previous step defined hostname f.x. {lower-case-projectname[.dev]}
 
 ### Manage services and daemons : WIP
