@@ -12,7 +12,12 @@
 5. Run `vagrant up` 
   * will ask password on Unix-like OS. This is for write acces on hosts file by `vagrant-hostmanager`.
   * Notice for Windows users: [missing VBoxAdpNet.sys](#vboxadpnetsys)
-6. Setup your IDE for using project as project on remote host.
+6. Access to a shell by running following command:
+  * Run `vagrant ssh`
+  * Run `sudo su - typo3` to login as typo3
+7. Setup your IDE for using project as project on remote host.
+
+
 
 
 ### Setup your IDE
