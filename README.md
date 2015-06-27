@@ -5,7 +5,8 @@
 1. Download and install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 2. Download and install [Vagrant](https://www.vagrantup.com/downloads.html)
 3. Clone this repository and cd in its directory:
-  * Run `git clone https://github.com/RafaelKa/Vagrant-for-TYPO3-Flow.git && cd Vagrant-for-TYPO3-Flow`
+  * Run `git clone https://github.com/RafaelKa/Vagrant-for-TYPO3-Flow.git`
+  * Run `cd Vagrant-for-TYPO3-Flow`
 4. Install Vagrant plugin to manage hostname for first project automatically:
   * Run `vagrant plugin install vagrant-hostmanager`
 5. Run `vagrant up` 
