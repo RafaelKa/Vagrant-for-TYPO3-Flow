@@ -81,9 +81,14 @@
 ## Environment configuration
 
 ### Miltiple machines
-If you want to run multiple machines at same time, you can do that but you must assign own IP address and hostname for each Vagrant box. Please change `192.168.144.100` and `typo3-flow.de` in `Vagrantfile` 
+
+If you want to run multiple machines at same time, you can do that but you must customize following things:
+* assign own IP address and hostname for each Vagrant box:
+  * change `192.168.144.100` and `typo3-flow.de` in `Vagrantfile`
+  * rename typo3-flow.dev folder to the in the previous step defined hostname f.x. {lower-case-projectname[.dev]}
 
 ### Manage services and daemons : WIP
+
 WIP: You can use settings.yaml to enable and disable installation and auto start from services like MySQL, Apache, NginX, etc.
 
 ## Notices Windows
