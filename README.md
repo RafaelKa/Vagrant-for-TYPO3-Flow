@@ -4,19 +4,22 @@
 
 1. Download and install [VirtualBox](https://www.virtualbox.org/wiki/Downloads)
 2. Download and install [Vagrant](https://www.vagrantup.com/downloads.html)
-3. Clone this repository and cd in its directory:
+3. Clone this repository and change in its directory:
   * Run `git clone https://github.com/RafaelKa/Vagrant-for-TYPO3-Flow.git`
   * Run `cd Vagrant-for-TYPO3-Flow`
-4. Install Vagrant plugin to manage hostname for first project automatically:
+4. Install Vagrant plugin to manage hostname for this project automatically:
   * Run `vagrant plugin install vagrant-hostmanager`
 5. Run `vagrant up` 
-  * will ask password on Unix-like OS. This is for write acces on hosts file by `vagrant-hostmanager`.
+  * will ask password on Unix-like OS. This is for write acces on `/etc/hosts` file by `vagrant-hostmanager`.
   * Notice for Windows users: [missing VBoxAdpNet.sys](#vboxadpnetsys)
 6. Access to a shell by running following command:
   * Run `vagrant ssh`
 7. Login as typo3 user in a shell
   * Run `sudo su - typo3`
-8. Setup your IDE for using project as project on remote host.
+8. Run `./flow help` and other flow commands
+9. Setup your IDE for using project as project on remote host as described in [Setup your IDE](#setup-your-ide) chapter.
+10. Setup Database as described in [Flow Quickstart](http://flowframework.readthedocs.org/en/stable/Quickstart/index.html#database-setup) chapter.
+  * use provided [PhpMyAdmin](#phpmyadmin) to create user and database for your development
 
 ### Setup your IDE
 
@@ -80,13 +83,14 @@
 
 ## Available tools
 
-* PhpMyAdmin 
-  * addrsees:
-    * each reachable address of current vagrant box + /tools/phpmyadmin  
-    * http://typo3-flow.dev/tools/phpmyadmin
-    * http://192.168.144.100/tools/phpmyadmin
-    * http://{lower-case-projectname[.dev]}/tools/phpmyadmin
-  * login `root` no password
+### PhpMyAdmin
+
+* addrsees:
+ * each reachable address of current vagrant box + /tools/phpmyadmin  
+ * http://typo3-flow.dev/tools/phpmyadmin
+ * http://192.168.144.100/tools/phpmyadmin
+ * http://{lower-case-projectname[.dev]}/tools/phpmyadmin
+* login `root` no password
 
 ## Environment configuration
 
