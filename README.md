@@ -14,11 +14,11 @@
   * Notice for Windows users: [missing VBoxAdpNet.sys](#vboxadpnetsys)
 6. Access to a shell by running following command:
   * Run `vagrant ssh`
-7. Login as typo3 user in a shell
+7. Login as typo3 user in a shell and run Flow commands
   * Run `sudo su - typo3`
-8. Run `./flow help` and other flow commands
-9. Setup your IDE for using project as `project on remote host` as described in [Setup your IDE](#setup-your-ide) chapter.
-10. Setup Database as described in [Flow Quickstart Documentation](http://flowframework.readthedocs.org/en/stable/Quickstart/index.html#database-setup) chapter.
+  * Run `./flow help` and other flow commands
+8. Setup your IDE for using project as `project on remote host` as described in [Setup your IDE](#setup-your-ide) chapter.
+9. Setup Database as described in [Flow Quickstart Documentation](http://flowframework.readthedocs.org/en/stable/Quickstart/index.html#database-setup) chapter.
   * use provided [PhpMyAdmin](#phpmyadmin) to create user and database
   * or make it with `mysql -u root -p'' ...` command inside your Vagrant boxes shell. User `root` has no password!
 
