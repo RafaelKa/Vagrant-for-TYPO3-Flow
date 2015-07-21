@@ -17,8 +17,8 @@
 7. Login as typo3 user in a shell
   * Run `sudo su - typo3`
 8. Run `./flow help` and other flow commands
-9. Setup your IDE for using project as project on remote host as described in [Setup your IDE](#setup-your-ide) chapter.
-10. Setup Database as described in [Flow Quickstart](http://flowframework.readthedocs.org/en/stable/Quickstart/index.html#database-setup) chapter.
+9. Setup your IDE for using project as `project on remote host` as described in [Setup your IDE](#setup-your-ide) chapter.
+10. Setup Database as described in [Flow Quickstart Documentation](http://flowframework.readthedocs.org/en/stable/Quickstart/index.html#database-setup) chapter.
   * use provided [PhpMyAdmin](#phpmyadmin) to create user and database for your development
 
 ### Setup your IDE
